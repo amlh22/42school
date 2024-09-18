@@ -12,7 +12,7 @@
 
 int	ft_isspace(int c)
 {
-	if ((c => 9 && c <= 13) || c == 32)
+	if ((c >= 9 && c <= 13) || c == 32)
 		return (1);
 	return (0);
 }
@@ -27,7 +27,7 @@ int	valid_base(char *base)
 	i = 0;
 	while (base[i])
 	{
-		if (base[i] == '+' || base[i] == '-')
+		if (base[i] == '+' || base[i] == '-' || ft_isspace(base[i]))
 			return (0);
 		j = i + 1;
 		while (base[j])
@@ -41,7 +41,7 @@ int	valid_base(char *base)
 	return (i);
 }
 
-int	base_index(char *base, char c, int *base_i)
+int	base_index(char *base, char c)
 {
 	int	i;
 
@@ -49,10 +49,7 @@ int	base_index(char *base, char c, int *base_i)
 	while (base[i])
 	{
 		if (base[i] == c)
-		{
-			*base_i = i;
 			return (i);
-		}
 		i++;
 	}
 	return (-1);
@@ -67,7 +64,6 @@ int	ft_atoi_base(char *str, char *base)
 
 	result = 0;
 	sign = 1;
-	base_i = 0;
 	base_len = valid_base(base);
 	if (base_len < 2)
 		return (0);
@@ -79,7 +75,7 @@ int	ft_atoi_base(char *str, char *base)
 			sign *= -1;
 		str++;
 	}
-	while (base_index(base, *str++, &base_i) != -1)
+	while ((base_i = base_index(base, str++)) != -1)
 		result = (result * base_len) + base_i;
 	return (sign * result);
 }
