@@ -26,3 +26,14 @@ int	ft_lstsize(t_list *lst)
 	}
 	return (count);
 }
+/*
+int main(void)
+{
+	t_list *start = NULL;
+	int size = ft_lstsize(start);
+
+	printf("List size: %d\n", size);
+
+	return (0);
+}
+*/

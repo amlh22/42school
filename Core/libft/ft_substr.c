@@ -30,3 +30,11 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	ft_strlcpy(str, s + start, len + 1);
 	return (str);
 }
+/*
+#include <stdio.h>
+int main(void)
+{
+    printf("%s\n", ft_substr("Hello world", 9, 3));
+    printf("%s\n", ft_substr("Hello world!", 1, 11));
+}
+*/
