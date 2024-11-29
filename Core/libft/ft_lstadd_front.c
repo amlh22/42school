@@ -6,7 +6,7 @@
 /*   By: amho <amho@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 22:14:27 by amho              #+#    #+#             */
-/*   Updated: 2024/11/29 22:16:09 by amho             ###   ########.fr       */
+/*   Updated: 2024/11/30 04:37:49 by amho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int main(void)
     new_node = ft_lstnew(&num2);
     ft_lstadd_front(&head, new_node);
     
-    printf("First node content after adding another node: %d\n", *(int *)head->content);
+    printf("Content after adding another: %d\n", *(int *)head->content);
     
     free(head->next);  
     free(head);      

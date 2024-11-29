@@ -6,7 +6,7 @@
 /*   By: amho <amho@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 22:51:29 by amho              #+#    #+#             */
-/*   Updated: 2024/11/29 23:00:48 by amho             ###   ########.fr       */
+/*   Updated: 2024/11/30 04:44:13 by amho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {
+	if (!lst || !del)
+		return ;
 	del(lst->content);
 	free(lst);
 }
