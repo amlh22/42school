@@ -6,13 +6,14 @@
 #    By: amho <amho@student.42kl.edu.my>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/16 06:38:42 by amho              #+#    #+#              #
-#    Updated: 2024/11/16 14:14:40 by amho             ###   ########.fr        #
+#    Updated: 2024/11/29 23:54:55 by amho             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC	=	cc
 CFLAGS	=	-Wall -Wextra -Werror
 RM	=	rm -rf
+AR	=	ar rcs
 
 NAME	=	libft.a
 
@@ -52,10 +53,22 @@ SOURCES	=	ft_isalpha.c \
 		ft_putchar_fd.c \
 		ft_putstr_fd.c \
 		ft_putendl_fd.c \
-		ft_putnbr_fd.c
+		ft_putnbr_fd.c \
+
+# Bonus functions
+BONUS =		ft_lstnew.c \
+		ft_lstadd_front.c \
+		ft_lstsize.c \
+		ft_lstlast.c \
+		ft_lstadd_back.c \
+		ft_lstdelone.c \
+		ft_lstclear.c \
+		ft_lstiter.c \
+		ft_lstmap.c 
 
 # List of object files created from source files.
 OBJECTS	=	$(SOURCES:%.c=%.o)
+BOBJECTS =	$(BONUS:%.c=%.o)
 
 # Default target
 all: $(NAME)
@@ -64,20 +77,24 @@ all: $(NAME)
 # Second line creates static library from object files.
 # "$@" is target name, "$^" represents all the object files
 $(NAME): $(OBJECTS)
-	ar rcs $@ $^ 
+	$(AR)  $@ $^
+
+# Target for bonus functions
+bonus: $(OBJECTS) $(BOBJECTS)
+	$(AR) $(NAME) $(OBJECTS) $(BOBJECTS) 
 
 # Compile source files into object files.
 # "$<" refers to the first prerequisite of a rule, the corresponding .c file for
 # the object file being created.
 %.o: %.c $(INCLUDE)
 	$(CC) $(CFLAGS) -c $< -o $@
-so:
-	$(CC) -nostartfiles -fPIC $(CFLAGS) $(SOURCES)
-	gcc -nostartfiles -shared -o libft.so $(OBJECTS)
-	
+#so:
+#	$(CC) -nostartfiles -fPIC $(CFLAGS) $(SOURCES)
+#	gcc -nostartfiles -shared -o libft.so $(OBJECTS)
+
 # Target to remove all object files.
 clean: 
-	$(RM) $(OBJECTS)
+	$(RM) $(OBJECTS) $(BOBJECTS)
 
 # Target that calls clean and then removes the library file.
 fclean: clean

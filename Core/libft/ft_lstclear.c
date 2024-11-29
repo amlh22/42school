@@ -1,39 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amho <amho@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/27 16:07:10 by amho              #+#    #+#             */
-/*   Updated: 2024/11/27 16:28:55 by amho             ###   ########.fr       */
+/*   Created: 2024/11/29 23:01:23 by amho              #+#    #+#             */
+/*   Updated: 2024/11/29 23:22:55 by amho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstnew(void *content)
+void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	t_list	*el;
+	t_list	*temp;
 
-	el = malloc(sizeof(t_list));
-	if (!el)
-		return (NULL);
-	el->content = content;
-	el->next = NULL;
-	return (el);
+	while (*lst)
+	{
+		temp = (*lst)->next;
+		ft_lstdelone(*lst, del);
+		*lst = temp;
+	}
+	free(*lst);
+	*lst = NULL;
 }
-/*
-#include <stdio.h>
-#include <stdlib.h>
-int main(void) 
-{
-    int num = 42;
-    t_list *new_node = ft_lstnew(&num);
-    
-    printf("New node is: %d\n", *(int *)new_node->content);
-    free(new_node);
-    
-    return (0);
-}
-*/

@@ -1,39 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amho <amho@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/27 16:07:10 by amho              #+#    #+#             */
-/*   Updated: 2024/11/27 16:28:55 by amho             ###   ########.fr       */
+/*   Created: 2024/11/29 22:31:29 by amho              #+#    #+#             */
+/*   Updated: 2024/11/29 22:50:53 by amho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstnew(void *content)
+int	ft_lstsize(t_list *lst)
 {
-	t_list	*el;
+	t_list	*temp;
+	int		count;
 
-	el = malloc(sizeof(t_list));
-	if (!el)
-		return (NULL);
-	el->content = content;
-	el->next = NULL;
-	return (el);
+	temp = lst;
+	count = 0;
+	while (temp)
+	{
+		temp = temp->next;
+		count++;
+	}
+	return (count);
 }
-/*
-#include <stdio.h>
-#include <stdlib.h>
-int main(void) 
-{
-    int num = 42;
-    t_list *new_node = ft_lstnew(&num);
-    
-    printf("New node is: %d\n", *(int *)new_node->content);
-    free(new_node);
-    
-    return (0);
-}
-*/
