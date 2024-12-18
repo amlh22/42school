@@ -6,7 +6,7 @@
 /*   By: amho <amho@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 23:18:04 by amho              #+#    #+#             */
-/*   Updated: 2024/12/18 23:26:51 by amho             ###   ########.fr       */
+/*   Updated: 2024/12/19 00:18:31 by amho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 char	*get_next_line(int fd);
 size_t	ft_strlen(const char *s);
+char	*ft_strdup(const char *s1);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 
 #endif

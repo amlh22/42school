@@ -6,7 +6,7 @@
 /*   By: amho <amho@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 23:27:35 by amho              #+#    #+#             */
-/*   Updated: 2024/12/19 00:13:59 by amho             ###   ########.fr       */
+/*   Updated: 2024/12/19 00:19:11 by amho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		return (ft_strdup(""));
 	if (len > size - start)
 		len = size - start;
-	str = malloc(sizeof(char)*(len + 1));
+	str = malloc(sizeof(char) * (len + 1));
 	if (!str)
 		return (NULL);
 	ft_strlcpy(str, s + start, len + 1);
