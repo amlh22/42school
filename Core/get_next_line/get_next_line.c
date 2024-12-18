@@ -6,7 +6,7 @@
 /*   By: amho <amho@student.42kl.edu.my>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/18 22:35:18 by amho              #+#    #+#             */
-/*   Updated: 2024/12/19 00:27:12 by amho             ###   ########.fr       */
+/*   Updated: 2024/12/19 00:35:27 by amho             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 char	*get_next_line(int fd)
 {
 	static char	*buffer;
+	char		*line;
 	
-	if (fd < 0 || BUFFER_SIZE == 0)
+	if (fd < 0 || BUFFER_SIZE == 0 || read(fd, 0, 0) < 0)
 		return (NULL);
 }
