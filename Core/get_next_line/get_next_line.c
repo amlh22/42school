@@ -17,6 +17,9 @@ char	*get_next_line(int fd)
 	static char	*buffer;
 	char		*line;
 	
-	if (fd < 0 || BUFFER_SIZE == 0 || read(fd, 0, 0) < 0)
+	if (fd < 0 || BUFFER_SIZE == 0)
+		return (NULL);
+	buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!buffer)
 		return (NULL);
 }
