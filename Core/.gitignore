@@ -11,6 +11,6 @@ run_test
 assets/libtests
 *~
 .DS_Store
-../libft-unit-test/
-../libft/libftTester/
-../libft_tester/
+/libft-unit-test/
+/libft/libftTester/
+/libft_tester/
