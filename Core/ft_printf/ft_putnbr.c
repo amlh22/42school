@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-int	ft_putint(int n)
+int	ft_putnbr(int n)
 {
 	int	count;
 
@@ -25,7 +25,7 @@ int	ft_putint(int n)
 		n = -n;
 	}
 	if (n >= 10)
-		count += ft_putint(n / 10);
+		count += ft_putnbr(n / 10);
 	count += ft_putchar(n % 10 + '0');
 	return (count);
 }
