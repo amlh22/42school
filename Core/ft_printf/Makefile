@@ -21,7 +21,7 @@ INCLUDE	=	ft_printf.h
 SOURCES =	ft_printf.c \
 		ft_putchar.c \
 		ft_putstr.c \
-		ft_putint.c \
+		ft_putnbr.c \
 		ft_putuint.c \
 		ft_puthex.c \
 		ft_putptr.c \
