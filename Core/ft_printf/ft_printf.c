@@ -25,7 +25,7 @@ int	ft_formats(va_list args, const char **fmt)
 	else if (**fmt == 'p')
 		count += ft_putptr(va_arg(args, void *));
 	else if (**fmt == 'd' || **fmt == 'i')
-		count += ft_putint(va_arg(args, int));
+		count += ft_putnbr(va_arg(args, int));
 	else if (**fmt == 'u')
 		count += ft_putuint(va_arg(args, unsigned int));
 	else if (**fmt == 'x')
@@ -51,7 +51,7 @@ int	ft_printf(const char *format, ...)
 		if (*format == '%')
 		{
 			format++;
-			ft_formats(args, &format);
+			count += ft_formats(args, &format);
 		}
 		else
 			count += ft_putchar(*format);
