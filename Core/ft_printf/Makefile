@@ -44,6 +44,4 @@ fclean: clean
 
 re: fclean all
 
-clear: fclean clear
-
 .PHONY: all clean fclean re
