@@ -12,6 +12,15 @@
 
 #include "get_next_line.h"
 
+static char	*backup_str(char **backup)
+{
+	*backup = (char *)malloc(sizeof(char) * 1);
+	if (!*backup)
+		return (NULL);
+	(*backup)[0] = '\0';
+	return (*backup);
+}
+
 static char	*read_line(int fd, char *buffer, char *backup)
 {
 	int		bytes_read;
@@ -26,8 +35,8 @@ static char	*read_line(int fd, char *buffer, char *backup)
 		if (bytes_read == 0)
 			break ;
 		buffer[bytes_read] = '\0';
-		if (!backup)
-			backup = ft_strdup("");
+		if (!backup && !backup_str(&backup))
+			return (NULL);
 		temp = backup;
 		backup = ft_strjoin(temp, buffer);
 		free(temp);
