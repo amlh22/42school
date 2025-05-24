@@ -13,5 +13,5 @@ assets/libtests
 /libft-unit-test/
 /libft/libftTester/
 /libft_tester/
-../ft_printf/ft_printf_tester/
-../ft_printf/printfTester/
+/ft_printf/ft_printf_tester/
+/ft_printf/printfTester/
