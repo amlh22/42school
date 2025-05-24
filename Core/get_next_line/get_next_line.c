@@ -12,16 +12,16 @@
 
 #include "get_next_line.h"
 
-static char	*backup_str(char **backup)
+static char	*init_str(char **stored)
 {
-	*backup = (char *)malloc(sizeof(char) * 1);
-	if (!*backup)
+	*stored = (char *)malloc(sizeof(char) * 1);
+	if (!*stored)
 		return (NULL);
-	(*backup)[0] = '\0';
-	return (*backup);
+	(*stored)[0] = '\0';
+	return (*stored);
 }
 
-static char	*read_line(int fd, char *buffer, char *backup)
+static char	*read_line(int fd, char *buffer, char *stored)
 {
 	int		bytes_read;
 	char	*temp;
@@ -35,57 +35,57 @@ static char	*read_line(int fd, char *buffer, char *backup)
 		if (bytes_read == 0)
 			break ;
 		buffer[bytes_read] = '\0';
-		if (!backup && !backup_str(&backup))
+		if (!stored && !init_str(&stored))
 			return (NULL);
-		temp = backup;
-		backup = ft_strjoin(temp, buffer);
+		temp = stored;
+		stored = ft_strjoin(temp, buffer);
 		free(temp);
 		temp = NULL;
-		if (ft_strchr(backup, '\n'))
+		if (ft_strchr(stored, '\n'))
 			break ;
 	}
-	return (backup);
+	return (stored);
 }
 
 static char	*extract_line(char *line)
 {
 	size_t	i;
-	char	*backup;
+	char	*stored;
 
 	i = 0;
 	while (line[i] != '\n' && line[i] != '\0')
 		i++;
 	if (line[i] == '\0')
 		return (NULL);
-	backup = ft_substr(line, i + 1, ft_strlen(line) - i);
-	if (*backup == '\0')
+	stored = ft_substr(line, i + 1, ft_strlen(line) - i);
+	if (*stored == '\0')
 	{
-		free(backup);
-		backup = NULL;
+		free(stored);
+		stored = NULL;
 	}
 	line[i + 1] = '\0';
-	return (backup);
+	return (stored);
 }
 
 char	*get_next_line(int fd)
 {
 	char		*line;
 	char		*buffer;
-	static char	*backup;
+	static char	*stored;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
 	if (!buffer)
 		return (NULL);
-	line = read_line(fd, buffer, backup);
+	line = read_line(fd, buffer, stored);
 	free(buffer);
 	if (!line)
 	{
-		free(backup);
-		backup = NULL;
+		free(stored);
+		stored = NULL;
 		return (NULL);
 	}
-	backup = extract_line(line);
+	stored = extract_line(line);
 	return (line);
 }
