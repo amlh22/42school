@@ -19,3 +19,6 @@ assets/libtests
 temp.c
 *.swp
 /42kl_gnl_tester/
+*.sh
+*.out
+main.c
