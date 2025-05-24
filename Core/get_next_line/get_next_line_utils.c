@@ -22,35 +22,41 @@ int	ft_strlen(const char *str)
 	return (len);
 }
 
-char	*ft_strdup(const char *s1)
+size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 {
-	size_t	len;
-	char	*dup;
 	size_t	i;
+	size_t	src_len;
 
-	len = ft_strlen(s1);
-	dup = malloc(len + 1);
-	if (!dup)
-		return (NULL);
-	while (s1[i] != '\0')
+	i = 0;
+	src_len = ft_strlen(src);
+	if (size == 0)
+		return (src_len);
+	while (src[i] && i < size - 1)
 	{
-		dup[i] = s1[i];
+		dest[i] = src[i];
 		i++;
 	}
-	dup[len] = '\0';
-	return (dup);
+	dest[i] = '\0';
+	return (src_len);
 }
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	char	*str;
+	size_t	i;
 	size_t	size;
 
 	if (!s)
 		return (NULL);
 	size = ft_strlen(s);
 	if (start >= size)
-		return (ft_strdup(""));
+	{
+		str = malloc(sizeof(char) * 1);
+		if (!str)
+			return (NULL);
+		str[0] = '\0';
+		return (str);
+	}
 	if (len > size - start)
 		len = size - start;
 	str = malloc(sizeof(char) * (len + 1));
